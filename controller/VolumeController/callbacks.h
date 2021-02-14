@@ -7,7 +7,7 @@ bool onSetVolume(const String &deviceId, int &volume) {
 
 bool onAdjustVolume(const String &deviceId, int &volumeDelta, bool volumeDefault) {
   globalVolume += volumeDelta;  // calculate absolute volume
-  Serial.printf("Device %s volume changed about %i to %d (default: %s)\r\n", deviceId.c_str(), volumeDelta, globalVolume, volumeDefault);
+  Serial.printf("Device %s volume changed about %i to %d (default: %s)\r\n", deviceId.c_str(), volumeDelta, globalVolume, volumeDefault?"true":"false");
   volumeDelta = globalVolume; // return absolute volume
   return true; // request handled properly
 }
