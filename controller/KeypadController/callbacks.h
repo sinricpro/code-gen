@@ -1,5 +1,5 @@
 // KeypadController
 bool onKeystroke(const String &deviceId, String &keystroke) {
-  Serial.printf("Key %s have been pressed\r\n", keystroke.c_str());
+  Serial.printf("[Device: %s]: Key %s have been pressed\r\n", deviceId.c_str(), keystroke.c_str());
   return true;
 }
