@@ -1,3 +1,2 @@
 // PowerLevelController
-
 int globalPowerLevel;

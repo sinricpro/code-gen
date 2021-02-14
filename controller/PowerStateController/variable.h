@@ -1,3 +1,2 @@
 // PowerStateController
-
 bool globalPowerState;

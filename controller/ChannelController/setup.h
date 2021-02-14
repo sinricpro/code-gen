@@ -1,5 +1,4 @@
   // ChannelController
-
   setupChannelNumbers();
   <%=device.deviceInstance%>.onChangeChannel(onChangeChannel);
   <%=device.deviceInstance%>.onChangeChannelNumber(onChangeChannelNumber);

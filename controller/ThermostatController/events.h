@@ -1,5 +1,4 @@
 // ThermostatController
-
 void updateTargetTemperature(int temperature) {
   <%= device.deviceInstance %>.sendTargetTemperatureEvent(temperature);
 }

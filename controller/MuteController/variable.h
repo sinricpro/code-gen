@@ -1,3 +1,2 @@
 // MuteController
-
 bool muteState;

@@ -1,5 +1,4 @@
 // VolumeController
-
 bool onSetVolume(const String &deviceId, int &volume) {
   Serial.printf("Device %s volume set to %d\r\n", deviceId.c_str(), volume);
   globalVolume = volume;

@@ -1,3 +1,2 @@
 // InputController
-
 String globalInput;

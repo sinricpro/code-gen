@@ -1,5 +1,4 @@
 // PercentageController
-
 bool onSetPercentage(const String &deviceId, int &percentage) {
   Serial.printf("Device %s percentage %d\r\n", deviceId.c_str(), percentage);
   globalPercentage = percentage;

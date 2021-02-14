@@ -1,5 +1,4 @@
 // ThermostatController
-
 bool onTargetTemperature(const String &deviceId, float &targetTemp) { 
   Serial.printf("Device %s target temperature set to %f\r\n", deviceId.c_str(), targetTemp);
   globalTargetTemp = targetTemp;

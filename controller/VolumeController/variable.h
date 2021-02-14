@@ -1,3 +1,2 @@
 // VolumeController
-
 int globalVolume;

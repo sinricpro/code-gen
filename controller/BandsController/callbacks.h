@@ -1,5 +1,4 @@
 // BandsController
-
 bool onSetBands(const String &deviceId, const String& bands, int &level) {
   bandsLevel[bands] = level;
   return true;

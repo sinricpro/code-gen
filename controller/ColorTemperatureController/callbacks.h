@@ -1,5 +1,4 @@
 // ColorTemperatureController
-
 bool onColorTemperature(const String &deviceId, int &colorTemperature) {
   Serial.printf("Device %s colorTemperature is set to %i\r\n", deviceId.c_str(), colorTemperature);
   return true; // request handled properly

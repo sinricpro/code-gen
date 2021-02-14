@@ -1,5 +1,4 @@
 // PowerLevelController
-
 bool onPowerLevel(const String &deviceId, int &powerLevel) {
   Serial.printf("Device %s powerlevel %d\r\n", deviceId.c_str(), powerLevel);
   globalPowerLevel = powerLevel;
