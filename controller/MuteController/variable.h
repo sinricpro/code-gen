@@ -1,0 +1,3 @@
+// MuteController
+
+bool muteState;

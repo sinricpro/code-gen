@@ -1,0 +1,3 @@
+// PercentageController
+
+int globalPercentage;

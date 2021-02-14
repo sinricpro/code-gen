@@ -1,0 +1,3 @@
+// VolumeController
+
+int globalVolume;

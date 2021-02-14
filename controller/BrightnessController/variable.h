@@ -1,0 +1,3 @@
+// BrightnessController
+
+int globalBrightness;

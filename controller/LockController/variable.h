@@ -1,0 +1,3 @@
+// LockController
+
+bool lockState;
