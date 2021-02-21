@@ -1,2 +1,2 @@
-// PowerSensorEventSource
+// PowerSensor
 // Todo!!
