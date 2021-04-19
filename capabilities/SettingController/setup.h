@@ -1,2 +1,2 @@
-  // InputController
+  // SettingController
   <%=device.deviceInstance%>.onSetSetting(onSetSetting);
