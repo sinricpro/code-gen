@@ -35,23 +35,16 @@
 #include "SinricPro.h"
 #include "SinricProSwitch.h"
 
-#define WIFI_SSID         <%-wiFiName%>
-#define WIFI_PASS         <%-wiFiPassword%>
-#define APP_KEY           <%-appKey%>
-#define APP_SECRET        <%-appSecert%>
-
- 
-<% for (var i=1; i<gpioMappings.length+1; i++) { -%>
+#define WIFI_SSID         "<%- wiFiName -%>"
+#define WIFI_PASS         "<%- wiFiPassword -%>"
+#define APP_KEY           <%- appKey %>
+#define APP_SECRET        <%- appSecert %>
+<% for (var i=1; i<gpioMappings.length+1; i++) { %>
 <% switchid = gpioMappings[i-1].deviceId -%>
 #define SWITCH_ID_<%- i-%>       "<%= switchid -%>"
-<% } -%>
-
-<% for (var i=1; i<gpioMappings.length+1; i++) { %>
-#define SWITCH_ID_<%- i-%>_GPIO   <%= gpioMappings[i-1].relayGPIO-%>
-<% } -%>
-
+#define SWITCH_ID_<%- i-%>_GPIO  <%= gpioMappings[i-1].relayGPIO%>
+<% } %>
 #define BAUD_RATE         9600                // Change baudrate to your need
-
 <% for (var i=1; i < gpioMappings.length +1; i++) { %>
 bool onPowerState<%= i %>(const String &deviceId, bool &state) {
     Serial.printf("Device <%= i %> turned %s", state?"on":"off");
