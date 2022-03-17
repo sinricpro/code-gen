@@ -14,7 +14,7 @@
  */
 
 // Uncomment the following line to enable serial debug output
-<%=ENABLE_DEBUG%>
+<%-ENABLE_DEBUG%>
 
 #ifdef ENABLE_DEBUG
        #define DEBUG_ESP_PORT Serial
@@ -38,11 +38,11 @@
 #define APP_KEY           <%=APP_KEY%>
 #define APP_SECRET        <%=APP_SECRET%>
 
-<%=SWITCH_IDS%>
+<%-SWITCH_IDS%>
 
 #define BAUD_RATE         9600                // Change baudrate to your need
 
-<%=SWITCH_POWER_STATE_FUNCTIONS%>
+<%-SWITCH_POWER_STATE_FUNCTIONS%>
 
 // setup function for WiFi connection
 void setupWiFi() {
@@ -60,7 +60,7 @@ void setupWiFi() {
 // setup function for SinricPro
 void setupSinricPro() {
   // add devices and callbacks to SinricPro
-  <%=SWITCH_SETUP%>
+  <%-SWITCH_SETUP%>
 
   // setup SinricPro
   SinricPro.onConnected([](){ Serial.printf("Connected to SinricPro\r\n"); }); 
