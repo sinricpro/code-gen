@@ -39,7 +39,7 @@
 #define APP_SECRET        <%-APP_SECRET%>
 
 <%- for(var i=0; i<gpioMappings.length; i++) {%> 
-#define SWITCH_ID_<%=i%>       "<%-gpioMappings[i].deviceId%>" 
+#define SWITCH_ID_<%=i%>       "<%- gpioMappings[i].deviceId %>" 
 <%- } %>
     
 <%-SWITCH_IDS%>
