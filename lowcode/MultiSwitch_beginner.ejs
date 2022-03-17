@@ -38,6 +38,10 @@
 #define APP_KEY           <%-APP_KEY%>
 #define APP_SECRET        <%-APP_SECRET%>
 
+<%- for(var i=0; i<gpioMappings.length; i++) {%> 
+#define SWITCH_ID_<%=i%>       "<%-gpioMappings[i].deviceId%>" 
+<%- } %>
+    
 <%-SWITCH_IDS%>
 
 #define BAUD_RATE         9600                // Change baudrate to your need
