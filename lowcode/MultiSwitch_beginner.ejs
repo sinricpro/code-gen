@@ -42,7 +42,7 @@
 <% for (var i=1; i<gpioMappings.length+1; i++) { %>
 <% switchid = gpioMappings[i-1].deviceId -%>
 #define SWITCH_ID_<%- i-%>       "<%= switchid -%>"
-#define RELAYPIN_<%- i-%>  <%= gpioMappings[i-1].relayGPIO%>
+#define RELAYPIN_<%- i-%>        <%= gpioMappings[i-1].relayGPIO%>
 <% } %>
 #define BAUD_RATE         9600                // Change baudrate to your need
 <% for (var i=1; i < gpioMappings.length +1; i++) { %>
