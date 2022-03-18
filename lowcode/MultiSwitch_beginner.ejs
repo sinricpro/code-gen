@@ -80,9 +80,9 @@ pinMode(SWITCH_ID_<%- i -%>_GPIO, OUTPUT);
   // setup SinricPro
   SinricPro.onConnected([](){ Serial.printf("Connected to SinricPro\r\n"); }); 
   SinricPro.onDisconnected([](){ Serial.printf("Disconnected from SinricPro\r\n"); });
-  <%if (enableSDKLogs) { %>
-  SinricPro.restoreDeviceStates(true);
-  <% } %>
+  <%if (restoreState) { %>
+  SinricPro.restoreDeviceStates(true); // Uncomment to restore the last known state from the server.
+  <% } %> 
   SinricPro.begin(APP_KEY, APP_SECRET);
 }
 
