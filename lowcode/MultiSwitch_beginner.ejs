@@ -48,7 +48,7 @@
 <% for (var i=1; i < gpioMappings.length +1; i++) { %>
 bool onPowerState<%= i %>(const String &deviceId, bool &state) {
     Serial.printf("Device <%= i %> turned %s", state?"on":"off");
-    digitalWrite(RELAYPIN_<%- i-%>_GPIO, state ? HIGH:LOW);
+    digitalWrite(RELAYPIN_<%- i-%>, state ? HIGH:LOW);
     return true; // request handled properly
 }
 <% } %>
