@@ -51,17 +51,15 @@
 #define APP_SECRET        <%- appSecert %>
 
 // comment the following line if you use a toggle switches instead of tactile buttons
-<%if (tactileButton) { %>
+<%if (tactileButton) { -%>
 #define TACTILE_BUTTON 1
 <% } %>
-
-
 #define BAUD_RATE   9600
 
 #define DEBOUNCE_TIME 250
-
+  
 <% for (var i=1; i<gpioMappings.length+1; i++) { -%>
-#define RELAYPIN_<%- i -%> <% gpioMappings[i-1].relayGPIO %>
+#define RELAYPIN_<%- i -%> <%- gpioMappings[i-1].relayGPIO %>
 <% } -%>
 
 typedef struct {      // struct for the std::map below
@@ -77,11 +75,7 @@ typedef struct {      // struct for the std::map below
 std::map<String, deviceConfig_t> devices = {
     //{deviceId, {relayPIN,  flipSwitchPIN}}
     <% for (var i=1; i<gpioMappings.length+1; i++) { -%>
-    <% deviceId = gpioMappings[i-1].deviceId %>
-    <% buttonGPIO = gpioMappings[i-1].buttonGPIO %>
-    <% relayGPIO = gpioMappings[i-1].relayGPIO %>
-    
-    {<% deviceId %>, {  <% relayGPIO %>, <% buttonGPIO %> }},
+    {"<%- gpioMappings[i-1].deviceId -%>", {  <%- gpioMappings[i-1].relayGPIO -%>, <%- gpioMappings[i-1].buttonGPIO -%> }},
     <% } -%>   
 };
 
@@ -165,7 +159,7 @@ void setupWiFi()
     Serial.printf(".");
     delay(250);
   }
-  digitalWrite(LED_BUILTIN, HIGH);
+  
   Serial.printf("connected!\r\n[WiFi]: IP-Address is %s\r\n", WiFi.localIP().toString().c_str());
 }
 
