@@ -65,6 +65,7 @@
 typedef struct {      // struct for the std::map below
   int relayPIN;
   int flipSwitchPIN;
+  bool activeLow;
 } deviceConfig_t;
 
 
@@ -73,9 +74,9 @@ typedef struct {      // struct for the std::map below
 // this can be up to N devices...depending on how much pin's available on your device ;)
 // right now we have 4 devicesIds going to 4 relays and 4 flip switches to switch the relay manually
 std::map<String, deviceConfig_t> devices = {
-    //{deviceId, {relayPIN,  flipSwitchPIN}}
+    //{deviceId, {relayPIN,  flipSwitchPIN, activeLow}}
     <% for (var i=1; i<gpioMappings.length+1; i++) { -%>
-    {"<%- gpioMappings[i-1].deviceId -%>", {  <%- gpioMappings[i-1].relayGPIO -%>, <%- gpioMappings[i-1].buttonGPIO -%> }},
+    {"<%- gpioMappings[i-1].deviceId -%>", {  <%- gpioMappings[i-1].relayGPIO -%>, <%- gpioMappings[i-1].buttonGPIO -%>, <%- gpioMappings[i-1].isButtonActiveLow -%> }},
     <% } -%>   
 };
 
@@ -83,6 +84,7 @@ typedef struct {      // struct for the std::map below
   String deviceId;
   bool lastFlipSwitchState;
   unsigned long lastFlipSwitchChange;
+  bool activeLow;
 } flipSwitchConfig_t;
 
 std::map<int, flipSwitchConfig_t> flipSwitches;    // this map is used to map flipSwitch PINs to deviceId and handling debounce and last flipSwitch state checks
@@ -102,11 +104,17 @@ void setupFlipSwitches() {
     flipSwitchConfig.deviceId = device.first;         // set the deviceId
     flipSwitchConfig.lastFlipSwitchChange = 0;        // set debounce time
     flipSwitchConfig.lastFlipSwitchState = false;     // set lastFlipSwitchState to false (LOW)
-
     int flipSwitchPIN = device.second.flipSwitchPIN;  // get the flipSwitchPIN
-
+    bool activeLow = device.second.activeLow;         // set the activeLow
+    flipSwitchConfig.activeLow = activeLow;           
     flipSwitches[flipSwitchPIN] = flipSwitchConfig;   // save the flipSwitch config to flipSwitches map
-    pinMode(flipSwitchPIN, INPUT);                   // set the flipSwitch pin to INPUT
+    
+    if(activeLow) {
+      pinMode(flipSwitchPIN, INPUT_PULLUP);           // set the flipSwitch pin to INPUT_PULLUP
+    }
+    else {
+      pinMode(flipSwitchPIN, INPUT);                  // set the flipSwitch pin to INPUT  
+    } 
   }
 }
 
@@ -127,7 +135,10 @@ void handleFlipSwitches() {
 
       int flipSwitchPIN = flipSwitch.first;                                       // get the flipSwitch pin from configuration
       bool lastFlipSwitchState = flipSwitch.second.lastFlipSwitchState;           // get the lastFlipSwitchState
+      bool activeLow = flipSwitch.second.activeLow; 
       bool flipSwitchState = digitalRead(flipSwitchPIN);                          // read the current flipSwitch state
+      if(activeLow) flipSwitchState = !flipSwitchState;
+
       if (flipSwitchState != lastFlipSwitchState) {                               // if the flipSwitchState has changed...
 #ifdef TACTILE_BUTTON
         if (flipSwitchState) {                                                    // if the tactile button is pressed 
