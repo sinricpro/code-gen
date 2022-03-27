@@ -33,15 +33,14 @@
 
 #include <Arduino.h>
 #ifdef ESP8266 
-       #include <ESP8266WiFi.h>
+ #include <ESP8266WiFi.h>
 #endif 
 #ifdef ESP32   
-       #include <WiFi.h>
+ #include <WiFi.h>
 #endif
 
 #include "SinricPro.h"
 #include "SinricProSwitch.h"
-
 #include <map>
 
 #define WIFI_SSID         "<%- wiFiName -%>"
@@ -66,7 +65,6 @@ typedef struct {      // struct for the std::map below
   int flipSwitchPIN;
   bool activeLow;
 } deviceConfig_t;
-
 
 // this is the main configuration
 // please put in your deviceId, the PIN for Relay and PIN for flipSwitch
