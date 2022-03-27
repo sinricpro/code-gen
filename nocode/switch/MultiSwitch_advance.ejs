@@ -51,7 +51,7 @@
   #define APP_SECRET        "<%- appSecert %>"
 
 // comment the following line if you use a toggle switches instead of tactile buttons
-<%if (tactileButton) { -%>
+<%if (accessory.buttonType == "1") { -%>
 #define TACTILE_BUTTON 1
 <% } %>
 #define BAUD_RATE   9600
