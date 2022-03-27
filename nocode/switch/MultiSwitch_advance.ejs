@@ -21,8 +21,7 @@
  * - visit https://github.com/sinricpro/esp8266-esp32-sdk/issues and check for existing issues or open a new one
  */
 
-
-<%if (enableSDKLogs) { %>
+<%if (enableSDKLogs) { -%>
 #define ENABLE_DEBUG
 <% } %>
 
@@ -76,7 +75,7 @@ typedef struct {      // struct for the std::map below
 std::map<String, deviceConfig_t> devices = {
     //{deviceId, {relayPIN,  flipSwitchPIN, activeLow}}
     <% for (var i=1; i<gpioMappings.length+1; i++) { -%>
-    {"<%- gpioMappings[i-1].deviceId -%>", {  <%- gpioMappings[i-1].relayGPIO -%>, <%- gpioMappings[i-1].buttonGPIO -%>, <%- gpioMappings[i-1].isButtonActiveLow -%> }},
+{"<%- gpioMappings[i-1].deviceId -%>", {  <%- gpioMappings[i-1].relayGPIO -%>, <%- gpioMappings[i-1].buttonGPIO -%>, <%- gpioMappings[i-1].isButtonActiveLow -%> }},
     <% } -%>   
 };
 
@@ -118,8 +117,7 @@ void setupFlipSwitches() {
   }
 }
 
-bool onPowerState(String deviceId, bool &state)
-{
+bool onPowerState(String deviceId, bool &state) {
   Serial.printf("%s: %s\r\n", deviceId.c_str(), state ? "on" : "off");
   int relayPIN = devices[deviceId].relayPIN; // get the relay pin for corresponding device
   digitalWrite(relayPIN, state);             // set the new relay state
@@ -160,8 +158,7 @@ void handleFlipSwitches() {
   }
 }
 
-void setupWiFi()
-{
+void setupWiFi() {
   Serial.printf("\r\n[Wifi]: Connecting");
   WiFi.begin(WIFI_SSID, WIFI_PASS);
 
@@ -174,18 +171,16 @@ void setupWiFi()
   Serial.printf("connected!\r\n[WiFi]: IP-Address is %s\r\n", WiFi.localIP().toString().c_str());
 }
 
-void setupSinricPro()
-{
-  for (auto &device : devices)
-  {
+void setupSinricPro() {
+  for (auto &device : devices) {
     const char *deviceId = device.first.c_str();
     SinricProSwitch &mySwitch = SinricPro[deviceId];
     mySwitch.onPowerState(onPowerState);
   }
 
-  <%if (restoreState) { %>
+  <%if (restoreState) { -%>
   SinricPro.restoreDeviceStates(true); // Uncomment to restore the last known state from the server.
-  <% } %> 
+  <% } %>
   SinricPro.begin(APP_KEY, APP_SECRET);  
 }
 
