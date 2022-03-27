@@ -19,17 +19,17 @@
 <% } %>
 
 #ifdef ENABLE_DEBUG
-       #define DEBUG_ESP_PORT Serial
-       #define NODEBUG_WEBSOCKETS
-       #define NDEBUG
+   #define DEBUG_ESP_PORT Serial
+   #define NODEBUG_WEBSOCKETS
+   #define NDEBUG
 #endif 
 
 #include <Arduino.h>
 #ifdef ESP8266 
-       #include <ESP8266WiFi.h>
+   #include <ESP8266WiFi.h>
 #endif 
 #ifdef ESP32   
-       #include <WiFi.h>
+   #include <WiFi.h>
 #endif
 
 #include "SinricPro.h"
@@ -47,11 +47,11 @@
 #define BAUD_RATE         9600                // Change baudrate to your need
 <% for (var i=1; i < gpioMappings.length +1; i++) { %>
 bool onPowerState<%= i %>(const String &deviceId, bool &state) {
-    Serial.printf("Device <%= i %> turned %s", state?"on":"off");
-    digitalWrite(RELAYPIN_<%- i-%>, state ? HIGH:LOW);
-    return true; // request handled properly
+ Serial.printf("Device <%= i %> turned %s", state?"on":"off");
+ digitalWrite(RELAYPIN_<%- i-%>, state ? HIGH:LOW);
+ return true; // request handled properly
 }
-<% } %>
+<% } -%>
 
 // setup function for WiFi connection
 void setupWiFi() {
@@ -80,9 +80,9 @@ pinMode(RELAYPIN_<%- i -%>, OUTPUT);
   // setup SinricPro
   SinricPro.onConnected([](){ Serial.printf("Connected to SinricPro\r\n"); }); 
   SinricPro.onDisconnected([](){ Serial.printf("Disconnected from SinricPro\r\n"); });
-  <%if (restoreState) { %>
+  <%- if (restoreState) { -%>
   SinricPro.restoreDeviceStates(true);
-  <% } %>
+  <%- } -%>
   SinricPro.begin(APP_KEY, APP_SECRET);
 }
 
