@@ -184,8 +184,7 @@ void setupSinricPro() {
   SinricPro.begin(APP_KEY, APP_SECRET);  
 }
 
-void setup()
-{
+void setup() {
   Serial.begin(BAUD_RATE);
   setupRelays();
   setupFlipSwitches();
@@ -193,8 +192,7 @@ void setup()
   setupSinricPro();
 }
 
-void loop()
-{
+void loop() {
   SinricPro.handle();
   handleFlipSwitches();
 }
