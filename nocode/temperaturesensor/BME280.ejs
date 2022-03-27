@@ -145,8 +145,7 @@ void handleTemperaturesensor() {
 void setup() {
   Wire.begin();   
   Serial.begin(BAUD_RATE);
-  mySerial.begin(9600); // Start communicating with IR controller
-
+  
   setupTemperatureSensor();
   setupWiFi();
   setupSinricPro(); 
