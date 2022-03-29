@@ -13,8 +13,9 @@
  * - visit https://github.com/sinricpro/esp8266-esp32-sdk/issues and check for existing issues or open a new one
  */
 
-// Uncomment the following line to enable serial debug output
-//#define ENABLE_DEBUG
+<%if (enableSDKLogs) { -%>
+#define ENABLE_DEBUG
+<% } %>
 
 #ifdef ENABLE_DEBUG
        #define DEBUG_ESP_PORT Serial
