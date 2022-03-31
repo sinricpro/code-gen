@@ -1,0 +1,14 @@
+{
+    "name": "SinricPro",
+    "version": "2022.3.0",
+    "builds": [
+      {
+        "chipFamily": "ESP32",
+        "parts": [{ "path": "https://raw.githubusercontent.com/sinricpro/code-gen/master/temp/esp32.bin", "offset": 0 }]
+      },
+      {
+        "chipFamily": "ESP8266",
+        "parts": [{ "path": "https://raw.githubusercontent.com/sinricpro/code-gen/master/temp/esp8266.bin", "offset": 0 }]
+      }
+    ]
+}
