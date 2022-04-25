@@ -42,7 +42,7 @@
 #define SWITCH_ID         "<%- gpioMappings[0].deviceId %>"
 
 #define BAUD_RATE         115200               // Change baudrate to your need
-#define BUTTON_PIN        <%- gpioMappings[0].deviceId %>   // GPIO for BUTTON (inverted: LOW = pressed, HIGH = released)
+#define BUTTON_PIN        <%- gpioMappings[0].buttonGPIO %>
 #define RELAY_PIN         <%- gpioMappings[0].relayGPIO %>
   
 bool myPowerState = false;
@@ -71,7 +71,7 @@ bool onPowerState(const String &deviceId, bool &state) {
 void handleButtonPress() {
   unsigned long actualMillis = millis(); // get actual millis() and keep it in variable actualMillis
   
-  if (digitalRead(BUTTON_PIN) == <%- gpioMappings[0].isButtonActiveLow ? LOW : HIGH %>  && actualMillis - lastBtnPress > 1000)  {   
+  if (digitalRead(BUTTON_PIN) == <%- gpioMappings[0].isButtonActiveLow ? 'LOW' : 'HIGH' %>  && actualMillis - lastBtnPress > 1000)  {   
     if (myPowerState) {     // flip myPowerState: if it was true, set it to false, vice versa
       myPowerState = false;
     } else {
