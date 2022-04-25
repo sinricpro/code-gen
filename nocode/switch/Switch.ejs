@@ -124,7 +124,7 @@ void setup() {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   <%} else { %>
   pinMode(BUTTON_PIN, INPUT);  
-  <% } %>
+  <% } -%>
   
   pinMode(RELAY_PIN, OUTPUT); // define LED GPIO as output
   Serial.begin(BAUD_RATE); Serial.printf("\r\n\r\n");
