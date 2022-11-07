@@ -72,7 +72,7 @@ pinMode(RELAYPIN_<%- i -%>, OUTPUT);
   <% } -%>
   <% for (var i=1; i<gpioMappings.length+1; i++) { %>
   SinricProSwitch& mySwitch<%= i %> = SinricPro[SWITCH_ID_<%= i %>];
-  mySwitch1.onPowerState(onPowerState<%= i %>);
+  mySwitch<%- i -%>.onPowerState(onPowerState<%= i %>);
   <% } %>
   
   // setup SinricPro
