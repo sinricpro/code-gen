@@ -3,8 +3,6 @@
  * - setup a temperature sensor device
  * - send temperature event to SinricPro server when temperature has changed
  * 
- *
- * 
  * If you encounter any issues:
  * - check the readme.md at https://github.com/sinricpro/esp8266-esp32-sdk/blob/master/README.md
  * - ensure all dependent libraries are installed
@@ -81,12 +79,11 @@ void handleTemperaturesensor() {
   if (deviceIsOn == false) {
     Serial.print("Sensor is truned off. Do nothing!");
     return;
-  }; 
+  }
 
   unsigned long actualMillis = millis();
   if (actualMillis - lastEvent < EVENT_WAIT_TIME) return; //only check every EVENT_WAIT_TIME milliseconds
   
-  Serial.print("Requesting LM35 temperatures...");
   int rawVoltage = analogRead(LM35_TEMPERATURE_SENSOR_PIN);
   float milliVolts = (rawVoltage / 1024.0) * 3300;
   float temperature = milliVolts / 10;
@@ -140,16 +137,10 @@ SinricPro.restoreDeviceStates(true); // Uncomment to restore the last known stat
   SinricPro.begin(APP_KEY, APP_SECRET);
 }
 
-void setupSensor() {
-  // Start up the library
-  sensors.begin();
-}
-
 // main setup function
 void setup() {
   Serial.begin(BAUD_RATE); Serial.printf("\r\n\r\n");
   
-  setupSensor();
   setupWiFi();
   setupSinricPro();
 }

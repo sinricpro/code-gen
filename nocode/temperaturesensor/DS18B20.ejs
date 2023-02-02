@@ -92,7 +92,7 @@ void handleTemperaturesensor() {
   if (deviceIsOn == false) {
     Serial.print("Sensor is truned off. Do nothing!");
     return;
-  }; 
+  }
 
   unsigned long actualMillis = millis();
   if (actualMillis - lastEvent < EVENT_WAIT_TIME) return; //only check every EVENT_WAIT_TIME milliseconds
