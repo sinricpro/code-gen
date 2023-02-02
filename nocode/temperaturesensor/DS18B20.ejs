@@ -49,7 +49,7 @@
 #define BAUD_RATE         115200              // Change baudrate to your need (used for serial monitor)
 #define EVENT_WAIT_TIME   60000   
 
-#define ONE_WIRE_BUS     <%- gpioMappings[0].dhtGPIO %>              
+#define ONE_WIRE_BUS     <%- gpioMappings[0].GPIO %>              
 
 // Setup a oneWire instance to communicate with any OneWire devices (not just Maxim/Dallas temperature ICs)
 OneWire oneWire(ONE_WIRE_BUS);
