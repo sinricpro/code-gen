@@ -3,7 +3,6 @@
  * - setup a temperature sensor device
  * - send temperature event to SinricPro server when temperature has changed
  * 
- * DHT Sensor is connected to D5 on ESP8266 devices / GPIO5 on ESP32 devices
  *
  * DHT Library used in this example: https://github.com/markruys/arduino-DHT
  * 
@@ -47,7 +46,7 @@
 #define BAUD_RATE         115200              // Change baudrate to your need (used for serial monitor)
 #define EVENT_WAIT_TIME   60000               // send event every 60 seconds
 
-#define DHT_PIN           <%- gpioMappings[0].dhtGPIO %>
+#define DHT_PIN           <%- gpioMappings[0].GPIO %>
 
 DHT dht;                                      // DHT sensor
 
