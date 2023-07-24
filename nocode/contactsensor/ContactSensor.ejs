@@ -59,7 +59,10 @@ unsigned long lastChange = 0;
  *      LOW  = contactsensor is open
  */
 void handleContactsensor() {
-  if (!myPowerState) return;                            // if device switched off...do nothing
+  if (!myPowerState) {
+    Serial.printf("Sensor is off...do nothing!\r\n");
+    return;
+  }
 
   unsigned long actualMillis = millis();
   if (actualMillis - lastChange < 250) return;          // debounce contact state transitions (same as debouncing a pushbutton)
@@ -94,6 +97,14 @@ bool onPowerState(const String &deviceId, bool &state) {
 // setup function for WiFi connection
 void setupWiFi() {
   Serial.printf("\r\n[Wifi]: Connecting");
+  #if defined(ESP8266)
+    WiFi.setSleepMode(WIFI_NONE_SLEEP); 
+    WiFi.setAutoReconnect(true);
+  #elif defined(ESP32)
+    WiFi.setSleep(false); 
+    WiFi.setAutoReconnect(true);
+  #endif
+
   WiFi.begin(WIFI_SSID, WIFI_PASS);
 
   while (WiFi.status() != WL_CONNECTED) {
