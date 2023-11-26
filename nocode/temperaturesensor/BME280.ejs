@@ -96,6 +96,11 @@ void handleTemperaturesensor() {
   unsigned long actualMillis = millis();
   if (actualMillis - lastEvent < EVENT_WAIT_TIME) return; //only check every EVENT_WAIT_TIME milliseconds
 
+  if (SinricPro.isConnected() == false) {
+    Serial.printf("Not connected to Sinric Pro...!\r\n");
+    return; 
+  }
+
   Serial.println("Temperature: " + String(bme.readTemperature(), 2) + " *C");
   Serial.println("Pressure: " + String(bme.readPressure() / 100.0F, 2) + " hPa");
   Serial.println("Altitude: " + String(bme.readAltitude(SEALEVELPRESSURE_HPA), 2) + " m");

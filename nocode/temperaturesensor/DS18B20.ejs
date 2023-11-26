@@ -71,6 +71,11 @@ void handleTemperaturesensor() {
   unsigned long actualMillis = millis();
   if (actualMillis - lastEvent < EVENT_WAIT_TIME) return; //only check every EVENT_WAIT_TIME milliseconds
   
+  if (SinricPro.isConnected() == false) {
+    Serial.printf("Not connected to Sinric Pro...!\r\n");
+    return; 
+  }
+
   Serial.print("Requesting DS18B20 temperatures...");
   sensors.requestTemperatures(); // Send the command to get temperatures
 

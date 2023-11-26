@@ -78,6 +78,11 @@ void handleButtonPress() {
     }
     digitalWrite(RELAY_PIN, myPowerState?LOW:HIGH); // if myPowerState indicates device turned on: turn on led (builtin led uses inverted logic: LOW = LED ON / HIGH = LED OFF)
 
+    if (SinricPro.isConnected() == false) {
+      Serial.printf("Not connected to Sinric Pro...!\r\n");
+      return; 
+    }
+
     // get Switch device back
     SinricProSwitch& mySwitch = SinricPro[SWITCH_ID];
     // send powerstate event

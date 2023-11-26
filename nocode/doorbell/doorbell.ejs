@@ -46,6 +46,11 @@
 // checkButtonpress
 // reads if BUTTON_PIN gets LOW and send Event
 void checkButtonPress() {
+  if (SinricPro.isConnected() == false) {
+    Serial.printf("Not connected to Sinric Pro...!\r\n");
+    return; 
+  }
+  
   static unsigned long lastBtnPress;
   unsigned long actualMillis = millis();
 

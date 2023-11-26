@@ -58,6 +58,11 @@ void handleTemperaturesensor() {
   unsigned long actualMillis = millis();
   if (actualMillis - lastEvent < EVENT_WAIT_TIME) return; //only check every EVENT_WAIT_TIME milliseconds
   
+  if (SinricPro.isConnected() == false) {
+    Serial.printf("Not connected to Sinric Pro...!\r\n");
+    return; 
+  }
+
   int rawVoltage = analogRead(LM35_TEMPERATURE_SENSOR_PIN);
   float milliVolts = (rawVoltage / 1024.0) * 3300;
   float temperature = milliVolts / 10;
