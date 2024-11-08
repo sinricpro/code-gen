@@ -1,2 +1,2 @@
-  // SettingController
-  <%=device.deviceInstance%>.onSetSetting(onSetSetting);
+   // SettingController
+   <%=device.deviceInstance%>.onSetSetting(onSetSetting);
