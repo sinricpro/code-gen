@@ -1,3 +1,3 @@
 // OpenCloseController
 <%=device.deviceInstance%>.onOpenClose(onOpenClose);
-<%=device.deviceInstance%>.onDirectionOpenClose(onOpenClose);
+<%=device.deviceInstance%>.onDirectionOpenClose(onDirectionOpenClose);
