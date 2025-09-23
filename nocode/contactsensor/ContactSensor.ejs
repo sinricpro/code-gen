@@ -67,7 +67,7 @@ void handleContactsensor() {
   bool actualContactState = digitalRead(CONTACT_PIN);   // read actual state of contactsensor
 
   if (actualContactState != lastContactState) {         // if state has changed
-    Serial.printf("Contactsensor is %s now\r\n", actualContactState?"open":"closed");
+    Serial.printf("Contactsensor is %s now\r\n", actualContactState?"closed":"open");
     lastContactState = actualContactState;              // update last known state
     lastChange = actualMillis;                          // update debounce time
     SinricProContactsensor &myContact = SinricPro[CONTACT_ID]; // get contact sensor device
